@@ -35,6 +35,9 @@ const Main: React.FC = () => {
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement> | React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault();
+        if (!search.trim()) {
+            return;
+        }
         window.location.href = `https://www.google.com/search?q=${search}`;
     }
     
