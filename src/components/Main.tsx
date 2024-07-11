@@ -5,12 +5,12 @@ import { BiMicrophone } from "react-icons/bi";
 import { BsFillMicFill } from "react-icons/bs";
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import Button from './global/Button';
+import Link from './global/Link';
 
 
 const Main: React.FC = () => {
-    const googleLogo: string = "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png";
-
     const [search, setSearch] = useState<string>('');
+    const logoImage: string = "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png";
 
     const {
         transcript,
@@ -38,10 +38,10 @@ const Main: React.FC = () => {
     }
     
     return ( 
-        <div className="flex flex-col items-center mt-[72px]">
-            <img src={googleLogo} alt="Google Logo" height={100} width={270} />
+        <div className="flex flex-col justify-center items-center mt-[160px]">
+            <img className="logo-image" src={logoImage} alt="Google Logo" height={100} width={270} />
             <form 
-                className="flex items-center w-2/5 px-5 py-2 border rounded-full mt-7 hover:shadow-md"
+                className="flex items-center w-4/5 px-5 py-4 border-2 rounded-full md:w-2/5 mt-7 hover:shadow-md"
                 onSubmit={(e) => handleSubmit(e)}
             >
                 <AiOutlineSearch className="text-xl text-slate-400" />
@@ -84,6 +84,24 @@ const Main: React.FC = () => {
                     text="I'm Feeling Lucky"
                 />
             </div>
+            <p className="text-sm text-[#4d5156] mt-7">
+                Google offered in: 
+                <Link 
+                    text="Français"
+                    url="https://www.google.com/setprefs?sig=0_xOjmWir258Hqr1qTFkTjaI8jSmA%3D&hl=fr&source=homepage&sa=X&ved=0ahUKEwi_oMKu5Z6HAxXWBfsDHdinAcQQ2ZgBCCA"
+                    classes="px-2 text-blue-800 hover:underline"
+                />
+                <Link 
+                    text="Kiswahili"
+                    url="https://www.google.com/setprefs?sig=0_xOjmWir258Hqr1qTFkTjaI8jSmA%3D&hl=sw&source=homepage&sa=X&ved=0ahUKEwi_oMKu5Z6HAxXWBfsDHdinAcQQ2ZgBCCE"
+                    classes="px-2 text-blue-800 hover:underline"
+                />
+                <Link 
+                    text="Ikinyarwanda"
+                    url="https://www.google.com/setprefs?sig=0_xOjmWir258Hqr1qTFkTjaI8jSmA%3D&hl=rw&source=homepage&sa=X&ved=0ahUKEwi_oMKu5Z6HAxXWBfsDHdinAcQQ2ZgBCCI"
+                    classes="px-2 text-blue-800 hover:underline"
+                />
+            </p>
         </div>
      );
 }
