@@ -42,7 +42,7 @@ const Main: React.FC = () => {
     }
     
     return ( 
-        <div className="flex flex-col items-center mt-20 md:mt-40 flex-1">
+        <div className="flex flex-col items-center flex-1 mt-20 md:mt-40">
             <img 
                 className="logo-image w-[70%] sm:w-[180px] md:w-full max-w-[270px] max-h-[100px] " 
                 src={logoImage} 
@@ -54,7 +54,7 @@ const Main: React.FC = () => {
                 className="flex items-center w-11/12 px-5 py-2 border-2 rounded-full md:py-3 md:w-2/5 mt-7 hover:shadow-md"
                 onSubmit={(e) => handleSubmit(e)}
             >
-                <AiOutlineSearch className="text-xl text-slate-400 flex-shrink-0" />
+                <AiOutlineSearch className="flex-shrink-0 text-xl text-slate-400" />
                 <input 
                     type="text" 
                     className="w-full ml-4 focus:outline-none"
@@ -64,7 +64,7 @@ const Main: React.FC = () => {
                 {
                     listening ? 
                         <BsFillMicFill 
-                            className="w-10 h-auto px-2 text-3xl cursor-pointer text-slate-400" 
+                            className="flex-shrink-0 w-10 h-auto px-2 text-3xl cursor-pointer text-slate-400" 
                             onClick={() => stopListening()}
                         />
                             : 
@@ -74,9 +74,9 @@ const Main: React.FC = () => {
                             />
                         </div>
                 }
-                <Camera classes="text-3xl w-6 h-6 cursor-pointer" />
+                <Camera classes="text-3xl w-6 h-6 cursor-pointer flex-shrink-0" />
             </form>
-            <div className="mt-7 flex justify-center flex-wrap gap-3 sm:gap-0">
+            <div className="flex flex-wrap justify-center gap-3 mt-7 sm:gap-0">
                 <Button
                     handleClick={e => handleSubmit(e)}
                     text="Google Search"
