@@ -4,7 +4,7 @@ import Main from "./components/Main";
 
 const App = () => {
   return (
-    <main>
+    <main className="flex flex-col min-h-screen">
       <Header />
       <Main />
       <Footer />

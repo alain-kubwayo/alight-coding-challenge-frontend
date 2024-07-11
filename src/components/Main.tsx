@@ -42,19 +42,19 @@ const Main: React.FC = () => {
     }
     
     return ( 
-        <div className="flex flex-col items-center justify-center mt-40">
+        <div className="flex flex-col items-center mt-20 md:mt-40 flex-1">
             <img 
-                className="logo-image" 
+                className="logo-image w-[70%] sm:w-[180px] md:w-full max-w-[270px] max-h-[100px] " 
                 src={logoImage} 
                 alt="Google Logo" 
                 height={100} 
                 width={270} 
             />
             <form 
-                className="flex items-center w-4/5 px-5 py-3 border-2 rounded-full md:w-2/5 mt-7 hover:shadow-md"
+                className="flex items-center w-11/12 px-5 py-2 border-2 rounded-full md:py-3 md:w-2/5 mt-7 hover:shadow-md"
                 onSubmit={(e) => handleSubmit(e)}
             >
-                <AiOutlineSearch className="text-xl text-slate-400" />
+                <AiOutlineSearch className="text-xl text-slate-400 flex-shrink-0" />
                 <input 
                     type="text" 
                     className="w-full ml-4 focus:outline-none"
@@ -70,13 +70,13 @@ const Main: React.FC = () => {
                             : 
                         <div onClick={() => startListening()} className="px-2 cursor-pointer">
                             <Microphone 
-                                classes="text-3xl w-6 h-6"
+                                classes="text-3xl w-6 h-6 flex-shrink-0"
                             />
                         </div>
                 }
                 <Camera classes="text-3xl w-6 h-6 cursor-pointer" />
             </form>
-            <div className="mt-7">
+            <div className="mt-7 flex justify-center flex-wrap gap-3 sm:gap-0">
                 <Button
                     handleClick={e => handleSubmit(e)}
                     text="Google Search"
@@ -86,7 +86,7 @@ const Main: React.FC = () => {
                     text="I'm Feeling Lucky"
                 />
             </div>
-            <p className="text-sm text-[#4d5156] mt-7">
+            <p className="text-sm text-[#4d5156] mt-7 text-center flex justify-center flex-wrap">
                 Google offered in: 
                 {
                     LINKS.map((link) => (

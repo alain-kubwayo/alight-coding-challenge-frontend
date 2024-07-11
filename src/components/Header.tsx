@@ -5,7 +5,7 @@ import Link from "./global/Link";
 const Header: React.FC = () => {
     const url: string = "https://lh3.googleusercontent.com/ogw/AF2bZyhkykt42Oz6ooTrmwbHb7Kdf03ZL2VCwO9qly5ghQ3sFYc=s32-c-mo";
     return ( 
-        <div className="flex items-center justify-end pt-3 pr-4 space-x-3 navbar">
+        <div className="flex items-center justify-end pt-3 pr-4 space-x-3 navbar flex-wrap">
             <Link 
                 text="Gmail"
                 url="https://mail.google.com"
