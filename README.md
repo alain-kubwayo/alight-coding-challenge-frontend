@@ -10,6 +10,9 @@ This is a clone of the Google front page. It also implements a functionality to 
 * Axios as an HTTP client
 * Node.js/Express for the backend
 * SerpApi: Google Search API
+* Vercel for hosting the frontend
+* Render for hosting the backend
+* Swagger for API Documentation
 
 ## Local Setup
 
@@ -58,5 +61,12 @@ project-root/
 ├── tailwind.config.js   # Configuration file for Tailwind CSS
 ├--
 ```
+
+## Backend Insights
+
+Documentation of the backend is at: https://alight-coding-challenge-backend.onrender.com/api-docs
+To make a GET request, you need to specify the search term like so, https://alight-coding-challenge-backend.onrender.com/search?q=${term}
+
+Replace `${term}` with any query to see Google search results on that.
 
 Voilà, thanks for checking out my project. I hope you have fun!
