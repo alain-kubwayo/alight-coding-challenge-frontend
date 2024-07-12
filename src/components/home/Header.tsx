@@ -1,5 +1,5 @@
 import { TbGridDots } from "react-icons/tb";
-import Link from "./global/Link";
+import Link from "../global/Link";
 
 
 const Header: React.FC = () => {

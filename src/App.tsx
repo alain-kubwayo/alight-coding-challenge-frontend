@@ -1,13 +1,14 @@
-import Footer from "./components/Footer";
-import Header from "./components/Header";
-import Main from "./components/Main";
+import { Route, Routes } from "react-router-dom";
+import Home from "./components/pages/Home";
+import Search from "./components/pages/Search";
 
 const App = () => {
   return (
     <main className="flex flex-col min-h-screen">
-      <Header />
-      <Main />
-      <Footer />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/search" element={<Search />} />
+      </Routes>
     </main>
   );
 };

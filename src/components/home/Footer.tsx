@@ -1,6 +1,7 @@
-import { LEFT_LINKS_DETAILS, RIGHT_LINKS_DETAILS } from "../data/constants";
+import { LEFT_LINKS_DETAILS, RIGHT_LINKS_DETAILS } from "../../data/constants";
 
-import Link from "./global/Link";
+import Link from "../global/Link";
+
 
 const Footer: React.FC = () => {
     return ( 
@@ -19,7 +20,7 @@ const Footer: React.FC = () => {
                         ))
                     }
                 </div>
-                <div className="flex ml-auto text-sm flex-wrap">
+                <div className="flex flex-wrap ml-auto text-sm">
                     {
                         RIGHT_LINKS_DETAILS.map(link => (
                             <Link 

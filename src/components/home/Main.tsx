@@ -3,14 +3,17 @@ import { useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import { BsFillMicFill } from "react-icons/bs";
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
-import Button from './global/Button';
-import Link from './global/Link';
-import Microphone from './icons/Microphone';
-import Camera from './icons/Camera';
-import { LINKS } from '../data/constants';
+import Button from '../global/Button';
+import Link from '../global/Link';
+import Microphone from '../icons/Microphone';
+import Camera from '../icons/Camera';
+import { LINKS } from '../../data/constants';
+import { useNavigate } from 'react-router-dom';
+import { searchData } from '../../api/search';
 
 
 const Main: React.FC = () => {
+    const navigate = useNavigate();
     const [search, setSearch] = useState<string>('');
     const logoImage: string = "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png";
 
@@ -33,12 +36,13 @@ const Main: React.FC = () => {
         return null;
     }
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement> | React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement> | React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault();
         if (!search.trim()) {
             return;
         }
-        window.location.href = `https://www.google.com/search?q=${search}`;
+        const data = await searchData(search);
+        navigate('/search', { state: { data } });
     }
     
     return ( 

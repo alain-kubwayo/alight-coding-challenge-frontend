@@ -1,12 +1,15 @@
 # Google Front Page Design
 
-This is a clone of the Google front page.
+This is a clone of the Google front page. It also implements a functionality to search and get the result from the Google Search API.
 
-## Technologies
+## Tools and Technologies
 
 * React.js
 * TypeScript
 * Tailwind CSS
+* Axios as an HTTP client
+* Node.js/Express for the backend
+* SerpApi: Google Search API
 
 ## Local Setup
 
@@ -43,6 +46,11 @@ project-root/
 ├── src/                 # Source code of the application
 │   ├── api/             # Any API-related logic
 │   ├── components/      # Reusable UI components
+│   ├── ├── global/      # Smaller UI components that can be used anywhere within the app
+│   ├── ├── home/        # Page-specific components for the home page
+│   ├── ├── search/      # Page-specific components for the search page
+│   ├── ├── icons/       # SVG components that can be used anywhere in the app
+│   ├── ├── pages/       # Page components
 │   ├── data/            # Any sort of constant data used throughout the application
 │   ├── types/           # Props/types are defined here and imported in the various components as needed
 │   ├── App.tsx          # Root component of the React application
@@ -51,4 +59,4 @@ project-root/
 ├--
 ```
 
-Voilà, I hope you have fun!
+Voilà, thanks for checking out my project. I hope you have fun!
