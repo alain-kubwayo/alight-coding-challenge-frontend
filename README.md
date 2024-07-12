@@ -47,7 +47,6 @@ You should see a link in the terminal that looks something like: ```http://local
 project-root/
 ├── public/              # Static assets served by the web server
 ├── src/                 # Source code of the application
-│   ├── api/             # Any API-related logic
 │   ├── components/      # Reusable UI components
 │   ├── ├── global/      # Smaller UI components that can be used anywhere within the app
 │   ├── ├── home/        # Page-specific components for the home page

@@ -1,4 +1,5 @@
 import 'regenerator-runtime';
+import axios from "axios";
 import { useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import { BsFillMicFill } from "react-icons/bs";
@@ -9,7 +10,6 @@ import Microphone from '../icons/Microphone';
 import Camera from '../icons/Camera';
 import { LINKS } from '../../data/constants';
 import { useNavigate } from 'react-router-dom';
-import { searchData } from '../../api/search';
 
 
 const Main: React.FC = () => {
@@ -41,8 +41,14 @@ const Main: React.FC = () => {
         if (!search.trim()) {
             return;
         }
-        const data = await searchData(search);
-        navigate('/search', { state: { data } });
+        try {
+            const result = await axios.get(`https://alight-coding-challenge-backend.onrender.com/search?q=${search}`);
+            const data = result.data;
+            navigate('/search', { state: { data } });
+        } catch (error) {
+            console.error("Error fetching search data:", error);
+            throw error;
+        }
     }
     
     return ( 
