@@ -110,7 +110,7 @@ const Main: React.FC = () => {
                 }
             </p>
         </div>
-     );
+    );
 }
- 
+
 export default Main;
