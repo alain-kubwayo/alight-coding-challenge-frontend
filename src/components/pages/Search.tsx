@@ -1,5 +1,8 @@
 import { useLocation } from "react-router-dom";
+import axios from "axios";
 import Header from "../search/Header";
+import { useCallback, useEffect, useState } from "react";
+import { FadeLoader } from "react-spinners";
 
 type SearchMetadata = {
 	id: string;
@@ -44,12 +47,53 @@ type SearchResultData = {
 
 const Search: React.FC = () => {
 	const location = useLocation();
-	const data: SearchResultData | undefined = location.state?.data;
+  const query = new URLSearchParams(location.search).get('q');
+  const [data, setData] = useState<SearchResultData | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+
+  const fetchData = useCallback(async () => {
+		if (!query) {
+			setError("No search query provided");
+			setIsLoading(false);
+			return;
+		}
+
+		try {
+			const result = await axios.get(`https://alight-coding-challenge-backend.onrender.com/search?q=${query}`);
+			setData(result.data);
+		} catch (error) {
+			setError(`Error fetching data related to ${query}`);
+		} finally {
+			setIsLoading(false);
+		}
+	}, [query]);
+
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData])
+
+	if (isLoading) {
+		return (
+			<div className="flex flex-col items-center justify-center h-screen">
+				<FadeLoader />
+			</div>
+		);
+	}
+
+	if (error) {
+		return (
+			<div className="flex flex-col items-center justify-center h-screen">
+				<h1 className="text-3xl font-bold text-gray-600 uppercase">{error}</h1>
+			</div>
+		);
+	}
 
 	if (!data) {
 		return (
-			<div className="flex flex-col items-center justify-center h-full">
-				<h1 className="text-3xl font-bold">No results found</h1>
+			<div className="flex flex-col items-center justify-center h-screen">
+				<h1 className="text-3xl font-bold text-gray-600 uppercase">No results found</h1>
 			</div>
 		);
 	}
@@ -96,23 +140,25 @@ const Search: React.FC = () => {
 							))}
 						</div>
 
-						<div className="mb-8">
-							<h2 className="mb-2 text-lg font-bold">People also ask</h2>
-							<ul>
-								{related_questions.map((question, index) => (
-									<li key={index} className="mb-4">
-										<a
-											href={question.link}
-											className="text-blue-600 hover:underline"
-											target="_blank"
-											rel="noopener noreferrer"
-										>
-											{question.question}
-										</a>
-									</li>
-								))}
-							</ul>
-						</div>
+            { related_questions?.length > 0 && (
+              <div className="mb-8">
+                <h2 className="mb-2 text-lg font-bold">People also ask</h2>
+                <ul>
+                  {related_questions.map((question, index) => (
+                    <li key={index} className="mb-4">
+                      <a
+                        href={question.link}
+                        className="text-blue-600 hover:underline"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {question.question}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
 					</div>
 				</div>
 			</div>

@@ -1,5 +1,4 @@
 import 'regenerator-runtime';
-import axios from "axios";
 import { useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import { BsFillMicFill } from "react-icons/bs";
@@ -41,14 +40,7 @@ const Main: React.FC = () => {
         if (!search.trim()) {
             return;
         }
-        try {
-            const result = await axios.get(`https://alight-coding-challenge-backend.onrender.com/search?q=${search}`);
-            const data = result.data;
-            navigate('/search', { state: { data } });
-        } catch (error) {
-            console.error("Error fetching search data:", error);
-            throw error;
-        }
+        navigate(`/search?q=${search}`);
     }
     
     return ( 
