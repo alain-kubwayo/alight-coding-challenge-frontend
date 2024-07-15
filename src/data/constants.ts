@@ -68,3 +68,5 @@ export const LINKS: Link[] = [
     classes: "px-2 text-blue-800 hover:underline",
   },
 ];
+
+export const SEARCH_FORM_ID = "search-form";

@@ -1,4 +1,4 @@
-import type { HTMLAttributes } from "react";
+import type { ButtonHTMLAttributes } from "react";
 
 export type Link = {
   id?: number;
@@ -12,9 +12,9 @@ export type Camera = {
 };
 
 export type ButtonProps = {
-  handleClick: HTMLAttributes<HTMLButtonElement>["onClick"];
+  handleClick?: ButtonHTMLAttributes<HTMLButtonElement>["onClick"];
   text: string;
-};
+} & Omit<ButtonHTMLAttributes<HTMLButtonElement>, "onClick" | "children">;
 
 export type MicrophoneType = {
   classes: string;

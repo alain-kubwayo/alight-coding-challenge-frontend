@@ -45,12 +45,15 @@ type SearchResultData = {
 	organic_results: OrganicResult[];
 };
 
+const navLinks = ["All", "Images", "Videos", "News", "Maps", "Books", "Web"];
+
 const Search: React.FC = () => {
 	const location = useLocation();
   const query = new URLSearchParams(location.search).get('q');
   const [data, setData] = useState<SearchResultData | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const [selectedNavlink, setSelectedNavlink] = useState("All");
 
   const fetchData = useCallback(async () => {
 		if (!query) {
@@ -106,7 +109,27 @@ const Search: React.FC = () => {
 				<Header />
 			</div>
 
-			<div className="max-w-4xl p-4 mx-auto mt-8">
+      <div className="mt-8">
+        <div className="absolute left-0 w-full h-px bg-gray-300 mt-7"></div>
+        <div className="flex max-w-6xl gap-4 mx-auto">
+          {navLinks.map((link, index) => (
+            <div
+              className="relative flex flex-col items-center cursor-pointer min-w-10"
+              onClick={() => setSelectedNavlink(link)}
+              key={index}
+            >
+              <a key={index} className="text-sm text-gray-600 hover:text-black">
+                {link}
+              </a>
+              {selectedNavlink === link && (
+                <div className="absolute w-full h-1 mt-6 bg-blue-600 rounded-sm justify-self-end" />
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+
+			<div className="max-w-6xl p-4 mx-auto mt-3">
 				<div className="flex flex-col mt-8 md:flex-row">
 					<div className="flex-grow">
 						<div className="mb-4">
