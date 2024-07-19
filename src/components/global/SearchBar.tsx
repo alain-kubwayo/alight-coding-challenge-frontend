@@ -2,7 +2,7 @@ import type { FC, MouseEvent } from "react";
 import { useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import { BsFillMicFill } from "react-icons/bs";
-import { useNavigate, useParams, useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import SpeechRecognition, {
 	useSpeechRecognition,
 } from "react-speech-recognition";
