@@ -1,5 +1,5 @@
 import type { FC, MouseEvent } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import { BsFillMicFill } from "react-icons/bs";
 import { useNavigate, useSearchParams } from "react-router-dom";
@@ -45,6 +45,10 @@ const SearchBar: FC<SearchBarProps> = ({ containerClassName }) => {
 		}
 		navigate(`/search?q=${search}`);
 	};
+
+	useEffect(() => {
+		if(transcript) setSearch(transcript);
+	}, [transcript])
 
 	if (!browserSupportsSpeechRecognition) return null;
 
