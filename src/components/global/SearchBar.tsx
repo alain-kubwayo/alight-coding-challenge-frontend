@@ -2,7 +2,7 @@ import type { FC, MouseEvent } from "react";
 import { useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import { BsFillMicFill } from "react-icons/bs";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import SpeechRecognition, {
 	useSpeechRecognition,
 } from "react-speech-recognition";
@@ -19,6 +19,9 @@ const SearchBar: FC<SearchBarProps> = ({ containerClassName }) => {
 		useSpeechRecognition();
 	const [search, setSearch] = useState("");
 	const navigate = useNavigate();
+
+	const [searchParams] = useSearchParams();
+  const searchedString: string = searchParams.get("q"); 
 
 	const startListening = () => {
 		SpeechRecognition.startListening({ continuous: true, language: "en-US" });
@@ -54,7 +57,7 @@ const SearchBar: FC<SearchBarProps> = ({ containerClassName }) => {
 				type="text"
 				className="w-full ml-4 focus:outline-none"
 				onChange={(e) => setSearch(e.target.value)}
-				value={search || transcript}
+				value={search || transcript || searchedString }
 			/>
 			{listening ? (
 				<BsFillMicFill
