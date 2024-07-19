@@ -17,11 +17,13 @@ type SearchBarProps = {
 const SearchBar: FC<SearchBarProps> = ({ containerClassName }) => {
 	const { transcript, listening, browserSupportsSpeechRecognition } =
 		useSpeechRecognition();
-	const [search, setSearch] = useState("");
-	const navigate = useNavigate();
 
 	const [searchParams] = useSearchParams();
-  const searchedString: string = searchParams.get("q"); 
+  const searchedString = searchParams.get("q"); 
+	const [search, setSearch] = useState(searchedString);
+	const navigate = useNavigate();
+
+	
 
 	const startListening = () => {
 		SpeechRecognition.startListening({ continuous: true, language: "en-US" });
@@ -38,7 +40,7 @@ const SearchBar: FC<SearchBarProps> = ({ containerClassName }) => {
 			| React.MouseEvent<HTMLButtonElement, MouseEvent>
 	) => {
 		e.preventDefault();
-		if (!search.trim()) {
+		if (search && !search.trim()) {
 			return;
 		}
 		navigate(`/search?q=${search}`);
@@ -57,7 +59,7 @@ const SearchBar: FC<SearchBarProps> = ({ containerClassName }) => {
 				type="text"
 				className="w-full ml-4 focus:outline-none"
 				onChange={(e) => setSearch(e.target.value)}
-				value={search || transcript || searchedString }
+				value={search || transcript }
 			/>
 			{listening ? (
 				<BsFillMicFill
